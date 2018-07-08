@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<header>
+    <div class="text-center">
+        <h1>Pizza Tracker</h1>
+        <hr />
+    </div>
+</header>
+
+<div class="row">
+    <div class=col-12>
+        <em>&emsp; Track your Pizza real time using following techiniques: </em>
+    </div>
+</div>
+<hr />
+<div class="text-center">
+    <div class="btn-group">
+        <button id="submit_ajax" type="submit" class="btn btn-danger">AJAX</button>
+        <button id="submit_polling" type="submit" class="btn btn-info">Polling</button>
+        <button id="submit_long_polling" type="submit" class="btn btn-warning">Long Polling</button>
+        <button id="submit_server_sent_events" type="submit" class="btn btn-info">Server Sent Events (SSE)</button>
+        <button id="submit_websockets" type="submit" class="btn btn-primary">WebSockets</button>
+        <button id="submit_signalR" type="submit" class="btn btn-success">SignalR</button>
+    </div>
+</div>
+
+<div id="status">
+
+</div>
+
+<script src="~/js/ajax.js"></script>
