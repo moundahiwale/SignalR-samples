@@ -10,11 +10,17 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\ajax.js" />
+    <Content Remove="wwwroot\js\polling.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\js\ajax.js" />
+    <None Include="wwwroot\js\polling.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Helper\Status.cs" />
   </ItemGroup>
 </Project>
