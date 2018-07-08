@@ -15,10 +15,12 @@
   <ItemGroup>
     <Content Remove="wwwroot\js\ajax.js" />
     <Content Remove="wwwroot\js\polling.js" />
+    <Content Remove="wwwroot\js\long-polling.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\js\ajax.js" />
     <None Include="wwwroot\js\polling.js" />
+    <None Include="wwwroot\js\long-polling.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Helper\Status.cs" />
