@@ -17,3 +17,5 @@ SignalR offers many advantages such as choosing the best available transport aut
 
 It also provides a fallback mechanism. WebSockets is the most efficient of the transports, if it is not supported by 
 either the server or the client/browser, SignalR falls back on SSE and if that isn't supported then Long Polling.
+
+![screen shot 2018-07-08 at 1 56 01 pm](https://user-images.githubusercontent.com/38259683/42420025-6e71c180-82b7-11e8-93b4-8bc8682fcd00.png)
