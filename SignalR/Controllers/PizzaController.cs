@@ -5,7 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SignalR.Helper;
+using SignalR.Hubs;
+using SignalR.Models;
 
 namespace SignalR.Controllers
 {
@@ -13,17 +16,29 @@ namespace SignalR.Controllers
     {
         private readonly OrderChecker _orderChecker;
         private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public PizzaController(OrderChecker orderChecker, IHttpContextAccessor httpContextAccessor)
+        private readonly IHubContext<PizzaHub> _pizzahub; 
+        public PizzaController(OrderChecker orderChecker, IHttpContextAccessor httpContextAccessor, IHubContext<PizzaHub> pizzahub)
         {
             _orderChecker = orderChecker;
             _httpContextAccessor = httpContextAccessor;
+            _pizzahub = pizzahub;
         }
 
         [HttpPost]
         public IActionResult OrderPizza()
         {
             return Accepted(1); //Order Id
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OrderPizzaSignalR([FromBody] Order order)
+        {
+            // When injecting hub here, doesn't have context of the caller Clients.Caller & Other
+            // Better approach would to be create OrderPizza method in the hub and let clients call it using
+            // Signal R instead of an AJAX call. Following is to show hubs can be accessed from everywhere
+            await _pizzahub.Clients.All.SendAsync("NewOrder", order);
+            // In PROD/actual app, order will be written to the DB, etc.
+            return Accepted(1); 
         }
 
         [HttpGet]

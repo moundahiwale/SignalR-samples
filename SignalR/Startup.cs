@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SignalR.Helper;
+using SignalR.Hubs;
 
 namespace SignalR
 {
@@ -32,6 +33,7 @@ namespace SignalR
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<OrderChecker>();
             services.AddHttpContextAccessor();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +60,7 @@ namespace SignalR
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSignalR(routes => routes.MapHub<PizzaHub>("/pizzahub"));
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
