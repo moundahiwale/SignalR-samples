@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
 using SignalR.Models;
 
 namespace SignalRConsoleClient
@@ -12,6 +13,7 @@ namespace SignalRConsoleClient
             Console.ReadKey();
             var connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:5001/pizzahub")
+                .AddMessagePackProtocol()
                 .Build();
 
             // On is generic and we have to specify the type we are expecting - Order
